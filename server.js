@@ -1,7 +1,9 @@
+
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const GamesController = require("./controllers/game");
 const app = express();
 
 mongoose.Promise = global.Promise;
@@ -20,6 +22,7 @@ connection.on('error', (err) => {
 
 app.use(bodyParser.json());
 
+app.use("/api/game", GamesController);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
